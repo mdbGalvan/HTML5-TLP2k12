@@ -1,0 +1,93 @@
+/*
+
+
+	Colours
+		main color: #33B5E5;
+		list select (hover):  #8ecbdf;
+
+*/
+
+body { 
+	margin:0;
+}
+
+
+header { 
+	color:#fff;
+	/*background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#28B0CC), to(#1D8296));*/
+	background-color: #006EFF;
+	position: absolute;
+	width: 100%;
+}
+
+header:not(.nav) {  box-shadow: 0 1px 2px #ccc;}
+
+header nav {  background-color: #222; }
+header nav a { color:#ccc; margin: 5px 0 0 0; }
+header nav a.active { color:#fff;  }
+
+header:not(nav) .left i { border-right:1px #0157bf solid;}
+header:not(nav) .left {border-right:1px #0157bf solid; background-color:#0261dd; }
+
+header:not(nav) .right i { border-left:1px #0157bf solid;}
+header:not(nav) .right {border-left:1px #0157bf solid; background-color:#0261dd; }
+
+ul.starred  {border: 1px solid #ccc;}
+
+a.button {border-bottom:1px #999 inset ; box-shadow: 0 1px 2px rgba(0,0,0,0.2); -webkit-tap-highlight-color: rgba(0,0,0,0);}
+
+
+/* Sections */
+section { background-color: #f8f8ff;}
+
+/* Articles */
+article h1 {color:#222; font-size:1.4em; margin:10px 0;}
+article.buttons a { background-color: #ddd; border-radius:10px;}
+
+/* Aside */
+aside { background-color: #333;}
+aside a { color:#ccc; border-bottom:1px solid #222;}
+aside li { border-bottom:1px #222 solid; color: #fff; background-color: #303030}
+aside li:hover { background-color: #222;}
+aside li.title { background-color: #252525; color:#ccc; border-bottom:1px #222 solid;}
+aside li.white { background-color: #ccc; color:#333;}
+aside li.white a { color:#333;}
+
+
+
+footer nav { background-color: #111;}
+footer nav a { color:#999; margin: 5px 0 0 0; }
+footer nav a:hover{ border-bottom:0;}
+footer nav a.active { color:#fff; background-color:#111;}
+footer nav a .arrow { background: #f8f8ff; }
+footer nav a .arrow:after { border-top-color: #f8f8ff;}
+footer nav a .arrow:before { border-top-color: #f8f8ff;}
+
+
+
+/* Lists */
+ul.list { width: 100%;}
+ul.list li { background-color: #fff; padding: 5px; border:1px solid #ddd; clear: both;}
+ul.list li .icon { float:left; display: inline-block;}
+ul.list li .data { float:left; display: inline-block;}
+ul.list li .data h2 { margin:0; font-size: 1em; font-weight: normal;}
+ul.list li .data p { margin:0; font-size: 0.8em; font-weight: normal; color: #222;}
+ul.list li .right { float:right; color:#333; }
+
+
+ul.big li { background-color: #f8f8ff; height:30px; margin:0; border:0 !important; border-bottom:1px solid #ddd !important;}
+ul.big li i { font-size:25px; color:#222; margin-right:10px;}
+ul.big li .right { font-size: 0.8em; margin-top:8px;}
+
+
+
+/* Buttons */
+
+/* Slide */
+
+#swipeRight, #swipeLeft { background-color: #dfdfdf; margin-bottom:10px; height:40px;}
+
+
+
+/* Extras */
+.map { box-shadow: inset 0  8px 8px -8px #696868, inset 0 -8px 8px -8px #696868; width:100%; height:50%;}

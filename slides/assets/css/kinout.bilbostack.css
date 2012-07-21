@@ -1,0 +1,96 @@
+@font-face {
+  font-family: 'Archive';
+  src: url('../fonts/archive.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+html, body {
+    background:  #FFF url(images/bg-yellow.png) repeat;
+    color: #fff;
+    font-family: 'Mensch';
+    font-weight: normal;
+}
+
+.thin {
+    font-weight: thin;
+}
+
+.strong {
+    font-weight: bold;
+}
+
+.inline {
+    font-family: 'MenschInline' !important;
+    font-weight: normal !important;
+}
+
+
+h1, h2, h3, h4{
+    text-shadow: 0px 1px 4px rgba(0,0,0,0.3);
+}
+
+h1 {
+    margin-top: 15%;
+    font-size: 120px;
+    line-height: 1.0em;
+}
+
+h1 mark {
+    font-size: 1.4em;
+}
+
+
+
+h1.big {
+    font-size: 256px !important;
+}
+h1.medium {
+    font-size: 210px !important;
+}
+h1.big mark{
+    font-size: 1.0em;
+}
+
+
+h2 {
+    font-family: 'MenschInline' !important;
+}
+
+h4 {
+    line-height: 1.0em;
+}
+
+.percent10 { font-size: 1.1em; }
+.percent20 { font-size: 1.2em; }
+.percent30 { font-size: 1.3em; }
+.percent40 { font-size: 1.4em; }
+.percent50 { font-size: 1.5em; }
+.percent60 { font-size: 1.6em; }
+.percent70 { font-size: 1.7em; }
+.percent80 { font-size: 1.8em; }
+.percent90 { font-size: 1.9em; }
+.percent100 { font-size: 2.0em; }
+
+.normal {
+    font-weight: normal;
+}
+
+.kinout mark {
+    background: none;
+    color: #000;
+    opacity: 0.5;
+    text-shadow: 0px 1px 1px rgba(255,255,255,0.5);
+}
+
+.ghost {
+    opacity: 0.5;
+}
+
+/*pre {
+    padding-bottom: 12px;
+}*/
+
+code {
+    font-size: 16px !important;
+}

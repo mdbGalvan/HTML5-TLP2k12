@@ -1,0 +1,221 @@
+<html>
+	<head>
+
+		<meta name="HandheldFriendly" content="True">
+		<meta name="MobileOptimized" content="320">
+		<meta http-equiv="cleartype" content="on">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+
+
+		<!-- CSS files -->
+		<link rel="stylesheet" href="barley/barley-0.1.min.css">
+		<link rel="stylesheet" href="barley/default.css">
+		<style>
+			section { background-color: #eee;}
+			#main { text-align: center;}
+			button { margin-top:60px; padding: 30px; border-radius: 10px; }
+
+		</style>
+	</head>
+	<body>
+
+		<section>
+			<header class="nav">
+				<div class="left">
+					<a href="#back" ><i class="icon-left-open big"></i></a>
+				</div>
+				<h1> Teleperos everywhere</h1>
+				<nav>
+					<a href="#friendList" data-target="article" style="width:32%"><i class="icon-users"></i>Friends</a>
+					<a style="width:32%"><i class="icon-search"></i>Item 2</a>
+					<a  style="width:32%"><i class="icon-target"></i>Item 3</a>
+				</nav>
+			</header>
+
+			<!-- mainHome -->
+			<article id="main">
+				<button><a href="#friendList" data-target="article">Friends list</a></div>
+			</article>
+
+			<!-- friendList -->
+			<article id="friendList" class="scrollable">
+				<div class="indented">
+				
+					<h1> My friends </h1>
+					<ul id="listContainer" class="list">
+						<li data-template="friendItem" style="display:none">
+							{{name}}
+							<div class="right">
+								<a href="#friendDetail" data-target="article" data-id="{{id}}"><i class="icon-search"></i>Where's {{name}}?</a>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</article>
+			
+
+			<article id="friendDetail">
+				<h1>Where is my friend </h1>
+
+				<div id="map" class="map">
+
+				</div>
+			</article>
+
+			<footer>
+
+
+			</footer>
+		</section>
+
+
+
+
+
+
+
+		<!-- JS Files -->
+
+
+		<script type="text/javascript" src="lib/zepto.min.js"></script>
+		<script type="text/javascript" src="barley/barley-0.1.min.js"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+		<script>
+
+
+			var App = (function(Barley){
+
+
+
+				/* Data */
+
+				var _getFriendList = function(){
+				
+
+					$.ajax({
+						dataType: "jsonp",
+						data: {},
+						type: 'GET',
+						url: 'http://tlp.adrianvera.com/index.php?type=friends',
+						success: function(data){
+							_displayFriendList(data);
+						}
+					});
+
+				};
+
+
+
+				var _getFriendLocation = function(id){
+
+					$.ajax({
+						dataType: "jsonp",
+						data: {id: id - 	1},
+						type: 'GET',
+						url: 'http://tlp.adrianvera.com/index.php?type=location',
+						success: function(data){
+							console.log(data);
+							GMaps.locate(data.latitude, data.longitude);
+						}
+					});
+					
+
+				}
+
+
+
+
+
+				/* Events */
+
+				var _setEvents =  function(){
+
+					Barley.Event.tap('a[href="#friendList"]', function(){
+						_getFriendList();
+					});	
+
+					Barley.Event.tap('a[href="#back"]', function(){
+						Barley.Nav.back();
+					});					
+
+
+
+				};
+
+
+
+				/* View */
+
+				var _displayFriendList = function(data){
+
+
+					for (var i = 0; i < data.length; i++)
+					{
+
+						Barley.View.List.append({
+
+							element : '#listContainer',
+							template : 'friendItem',
+							data : {
+								id : data[i].id,
+								name:  data[i].name
+							}
+
+						});
+					}
+
+
+					Barley.Event.tap('a[href="#friendDetail"]', function(){
+						_getFriendLocation($(this).data('id'));
+					});
+				};
+
+
+				var init =  function(){
+					BARLEY.App.init();
+					_setEvents();
+				};
+
+
+
+				return {
+					init : init
+				}
+
+			})(BARLEY);
+
+
+			var GMaps = (function(){
+
+				var locate = function(latitude, longitude){
+
+					var myLatlng = new google.maps.LatLng(latitude, longitude);
+					var mapOptions = {
+					  zoom: 15,
+					  center: myLatlng,
+					  mapTypeId: google.maps.MapTypeId.ROADMAP
+					}
+					var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+					var marker = new google.maps.Marker({
+						position: myLatlng,
+						map: map,
+					});
+
+				};
+
+
+				return {
+					locate : locate
+				}
+
+
+			})();
+
+			App.init();
+		</script>
+	</body>
+</html>
